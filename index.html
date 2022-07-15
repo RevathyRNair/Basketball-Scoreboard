@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"> 
+
+        <link href="https://www.1001fonts.com/digital+clock-fonts.html" rel="stylesheet" type="text/css"> -->
+        
+        <link rel="stylesheet" href="css/index.css">
+        <title>Basketball Scoreboard</title>
+    </head>
+    <body>
+        <p id="match-over"></p>
+        <div class="timer">
+            <h1>TIMER</h1>
+            <h2 id="time-val">12:00</h2> 
+            <!--<span id="min">1</span><span id="smin">2</span><span id="col">:</span><span id="sec">0</span><span id="msec">0</span>-->
+
+        </div>
+        <div class="main">
+            <div class="home-score">
+                <h1 class="score-heading">Home Score</h1>
+                <div class="home-score-summary">
+                    <div class="round-score">
+                        <div><h2>Round 1 - </h2></div>
+                        <div id="h-val1"><h2>0</h2></div>
+                    </div>
+                    <div class="round-score">
+                        <div><h2>Round 2 - </h2></div>
+                        <div id="h-val2"><h2>0</h2></div>
+                    </div>
+                    <div class="round-score">
+                        <div><h2>Round 3 - </h2></div>
+                        <div id="h-val3"><h2>0</h2></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="point-board">
+                <h1 class="game-name">Basketball Scoreboard</h1>
+                <div class="team-names">
+                    <div>
+                        <h1 class="name">HOME</h1>
+                        <div class="score">
+                            <h2><span id="home-pt">0</span></h2>
+                        </div>
+                        <div class="pt-btn">
+                            <button class="btn" onclick="addHomePt1()">+1</button>
+                            <button class="btn" onclick="addHomePt2()">+2</button>
+                            <button class="btn" onclick="addHomePt3()">+3</button>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="name">GUEST</h1>
+                        <div class="score">
+                            <h2><span id="guest-pt">0</span></h2>
+                        </div>
+                        <div class="pt-btn">
+                            <button class="btn" onclick="addGuestPt1()">+1</button>
+                            <button class="btn" onclick="addGuestPt2()">+2</button>
+                            <button class="btn" onclick="addGuestPt3()">+3</button>
+                        </div>
+                    </div>
+                    
+                </div> 
+                <button class="reset-btn" onclick="start()">START</button> 
+                
+            </div>
+    
+            <div class="guest-score">
+                <h1 class="score-heading">Guest Score</h1>
+                <div class="home-score-summary">
+                    <div class="round-score">
+                        <div><h2>Round 1 - </h2></div>
+                        <div id="g-val1"><h2>0</h2></div>
+                    </div>
+                    <div class="round-score">
+                        <div><h2>Round 2 - </h2></div>
+                        <div id="g-val2"><h2>0</h2></div>
+                    </div>
+                    <div class="round-score">
+                        <div><h2>Round 3 - </h2></div>
+                        <div id="g-val3"><h2>0</h2></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <script src="index.js"></script>
+    </body>
+</html>
