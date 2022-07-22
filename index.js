@@ -1,112 +1,130 @@
+const startButton = document.getElementById("start-btn");
+const minTimeInterval = document.querySelector(".minute-interval");
+const secTimeInterval = document.querySelector(".seconds-interval");
+const addPointButton = document.querySelectorAll(".add-point-btn");
+const homeScoreValue = document.querySelector(".home-point");
+const guestScoreValue = document.querySelector(".guest-point");
+const homeRoundOneScore = document.querySelector(".home-round-1");
+const homeRoundTwoScore = document.querySelector(".home-round-2");
+const homeRoundThreeScore = document.querySelector(".home-round-3");
+const guestRoundOneScore = document.querySelector(".guest-round-1");
+const guestRoundTwoScore = document.querySelector(".guest-round-2");
+const guestRoundThreeScore = document.querySelector(".guest-round-3");
+const messageBox = document.querySelector(".message-box");
 
-let rounds = 1;
-let hval = 0;
-let gval = 0;
+let homeScore = 0;
+let guestScore = 0;
+let matchDuration = 0.25;
 
-function addHomePt1() {
-    hval = hval + 1;
-    console.log(hval);
-    document.getElementById("home-pt").textContent = hval;
-}
+const showMessage = (element, message) => (element.textContent = message);
+const addHomeScore = (score) => (homeScoreValue.textContent = score);
+const addGuestScore = (score) => (guestScoreValue.textContent = score);
+const addHomeGroupScore = (amount) => (homeScore = homeScore + amount);
+const addGuestGroupScore = (amount) => (guestScore = guestScore + amount);
+const addHomeRoundOneScore = (score) => (homeRoundOneScore.textContent = score);
+const addHomeRoundTwoScore = (score) => (homeRoundTwoScore.textContent = score);
 
-function addHomePt2() {
-    hval = hval + 2;
-    console.log(hval);
-    document.getElementById("home-pt").textContent = hval;
-}    
+const renderMins = (minValue) =>
+  (minTimeInterval.textContent = String(minValue).padStart(2, 0));
 
-function addHomePt3() {
-    hval = hval + 3;
-    console.log(hval);
-    document.getElementById("home-pt").textContent = hval;
-}
+const renderSecs = (secValue) =>
+  (secTimeInterval.textContent = String(secValue).padStart(2, 0));
 
-function addGuestPt1() {
-    gval = gval + 1;
-    console.log(gval);
-    document.getElementById("guest-pt").textContent = gval;
-}
+const addHomeRoundThreeScore = (score) =>
+  (homeRoundThreeScore.textContent = score);
 
-function addGuestPt2() {
-    gval = gval + 2;
-    console.log(gval);
-    document.getElementById("guest-pt").textContent = gval;
-}
+const addGuestRoundOneScore = (score) =>
+  (guestRoundOneScore.textContent = score);
 
-function addGuestPt3() {
-    gval = gval + 3;
-    console.log(gval);
-    document.getElementById("guest-pt").textContent = gval;
-}
+const addGuestRoundTwoScore = (score) =>
+  (guestRoundTwoScore.textContent = score);
 
-function reset() {
-    hval = 0;
-    gval = 0;
-    document.getElementById("home-pt").textContent = hval;
-    document.getElementById("guest-pt").textContent = gval;
-}
+const addGuestRoundThreeScore = (score) =>
+  (guestRoundThreeScore.textContent = score);
 
-//JS for timer
+const resetScores = () => {
+  setTimeout(() => {
+    showMessage(messageBox, " ");
+    homeScoreValue.textContent = guestScoreValue.textContent = 0;
+  }, 3000);
+};
 
-let interval = null;
-const startingMinutes = 12;
-let time = startingMinutes * 60;
-const countdownEl = document.getElementById("time-val");
+addPointButton.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    const buttonIsWithAttribute = e.target.getAttribute("data-add-point");
 
-function start() {
-    if(interval) {
-        return
+    if (buttonIsWithAttribute === "home-point-1") {
+      addHomeGroupScore(1);
+      addHomeScore(homeScore);
     }
 
-    interval = setInterval(updateCountdown, 1000);
-}
-
-function updateCountdown() {
-    const minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-    countdownEl.textContent = minutes + ":" + seconds;
-    console.log(countdownEl.textContent);
-
-    if(minutes<0){ 
-        showMsg();
-        reset();
-        setTimeout(resetWindow, 5000);
-        if(rounds == 1) {
-            document.getElementById("h-val1").textContent = hval;
-            document.getElementById("g-val1").textContent = gval;
-        }
-        if(rounds == 2) {
-            document.getElementById("h-val2").textContent = hval;
-            document.getElementById("g-val2").textContent = gval;
-        }
-        if(rounds == 3) {
-            document.getElementById("h-val3").textContent = hval;
-            document.getElementById("g-val3").textContent = gval;
-        }
-        if(rounds == 4) {
-            document.getElementById("h-val4").textContent = hval;
-            document.getElementById("g-val4").textContent = gval;
-        }
-        
+    if (buttonIsWithAttribute === "home-point-2") {
+      addHomeGroupScore(2);
+      addHomeScore(homeScore);
     }
-    time--;
-    console.log(time);
-}
 
-function resetWindow() {
-    window.location.href="index.html";
-}
+    if (buttonIsWithAttribute === "home-point-3") {
+      addHomeGroupScore(3);
+      addHomeScore(homeScore);
+    }
 
-function showMsg() {
-    let matchOverMsg = document.getElementById("match-over");
-    matchOverMsg.textContent = "Round " + rounds + " Over!";
-    console.log(matchOverMsg.textContent);
-}
+    if (buttonIsWithAttribute === "guest-point-1") {
+      addGuestGroupScore(1);
+      addGuestScore(guestScore);
+    }
 
-function reset() {
-    document.getElementById("home-pt").textContent = 0;
-    document.getElementById("guest-pt").textContent = 0;
-    document.getElementById("time-val").textContent = "12:00";
-}
+    if (buttonIsWithAttribute === "guest-point-2") {
+      addGuestGroupScore(2);
+      addGuestScore(guestScore);
+    }
 
+    if (buttonIsWithAttribute === "guest-point-3") {
+      addGuestGroupScore(3);
+      addGuestScore(guestScore);
+    }
+  });
+});
 
+startButton.addEventListener("click", () => {
+  let timeInterval;
+  let timerRange = matchDuration * 60;
+
+  const startMatch = () => {
+    let mins, sec, timeup;
+
+    mins = Math.floor(timerRange / 60);
+    sec = timerRange % 60;
+    timeup = mins <= 0 && sec <= 0;
+
+    renderMins(mins);
+    renderSecs(sec);
+
+    if (timeup) {
+      clearInterval(timeInterval);
+      addHomeRoundOneScore(homeScoreValue.textContent);
+      addGuestRoundOneScore(guestScoreValue.textContent);
+      showMessage(messageBox, "Round one Over");
+      resetScores();
+    }
+
+    /*     if (timeup) {
+      clearInterval(timeInterval);
+      addHomeRoundTwoScore(homeScoreValue.textContent);
+      addGuestRoundTwoScore(guestScoreValue.textContent);
+      showMessage(messageBox, "Round two Over");
+      resetScores();
+    }
+
+    if (timeup) {
+      clearInterval(timeInterval);
+      addHomeRoundTwoScore(homeScoreValue.textContent);
+      addGuestRoundTwoScore(guestScoreValue.textContent);
+      showMessage(messageBox, "Round two Over");
+      resetScores();
+    } */
+
+    timerRange--;
+  };
+
+  timeInterval = setInterval(startMatch, 1000);
+});
