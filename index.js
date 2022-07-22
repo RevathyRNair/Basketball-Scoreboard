@@ -16,6 +16,8 @@ let homeScore = 0;
 let guestScore = 0;
 let matchDuration = 0.25;
 
+const isDisabled = (boolean) => (startButton.disabled = boolean);
+
 const showMessage = (element, message) => (element.textContent = message);
 const addHomeScore = (score) => (homeScoreValue.textContent = score);
 const addGuestScore = (score) => (guestScoreValue.textContent = score);
@@ -86,6 +88,7 @@ addPointButton.forEach((btn) => {
 });
 
 startButton.addEventListener("click", () => {
+  isDisabled(true);
   let timeInterval;
   let timerRange = matchDuration * 60;
 
@@ -101,6 +104,7 @@ startButton.addEventListener("click", () => {
 
     if (timeup) {
       clearInterval(timeInterval);
+      isDisabled(false);
       addHomeRoundOneScore(homeScoreValue.textContent);
       addGuestRoundOneScore(guestScoreValue.textContent);
       showMessage(messageBox, "Round one Over");
