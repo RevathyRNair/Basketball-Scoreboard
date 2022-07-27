@@ -1,7 +1,28 @@
+const startButton = document.getElementById("start-btn");
+const minuteVal = document.querySelector(".minute-val");
+const secondVal = document.querySelector(".seconds-val");
+
+const homeRound1Score = document.querySelector(".home-round-1");
+const homeRound2Score = document.querySelector(".home-round-2");
+const homeRound3Score = document.querySelector(".home-round-3");
+const homeRound4Score = document.querySelector(".home-round-4");
+
+const homePoint = document.querySelector(".home-point");
+const guestPoint = document.querySelector(".guest-point");
+
+const addPointButton = document.querySelectorAll(".add-pt-btn");
+
+const guestRound1Score = document.querySelector(".guest-round-1");
+const guestRound2Score = document.querySelector(".guest-round-2");
+const guestRound3Score = document.querySelector(".guest-round-3");
+const guestRound4Score = document.querySelector(".guest-round-4");
+
+const message = document.querySelector(".display-msg");
 
 let rounds = 1;
 let hval = 0;
 let gval = 0;
+let matchDuration = 0.25;
 
 function addHomePt1() {
     hval = hval + 1;

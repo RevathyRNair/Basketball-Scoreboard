@@ -4,28 +4,43 @@
   }
 
 body {
+    width: 100vw;
+    height: 100vh;
     background-image: url(../images/basketball.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
     background-position: center;
-    display: block;
+    /* display: block; */
 }
 
-.timer {
-    justify-content: center;
-    text-align: center;
+.display-msg {
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.timer-container {
+    background-color: #ffffff49;
     color: rgb(101, 9, 6);
-    font-size: large;
+    text-align: center;
+    margin: auto;
+    width: 20%;
+    padding: 10px;
+    /* justify-content: center; */
+    
+    
+    /* font-size: large;
     border: 2px solid;
     margin-left: 40%;
-    margin-right: 40%;
-    background-color: #ffffff49;
+    margin-right: 40%; */
+    
 }
 
-#time-val {
+.time-val {
     font-size: 50px;
-    text-shadow: none;
+    /* text-shadow: none; */
     color: black;
 }
 
@@ -38,28 +53,32 @@ body {
     justify-content: center;
 }
 
-.home-score {
+.home-score, .guest-score {
     background-color: #da454549;
     justify-content: center;
     color: white;
+    margin-bottom: auto;
 }
 
-.guest-score {
-    background-color: #da454549;
-    justify-content: center;
-    color: white;
+.score-summary {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding-top: 15px;
 }
 
 .round-score {
     display: flex;
+    justify-content: center;
     font-size: 20px;
     font-weight: bold;
     background-color: rgba(128, 128, 128, 0.356);
     color: black;
-    text-align: center;
-    justify-content: center;
     border: 3px solid black;
     margin: 5px 0px;
+    /* text-align: center; */
+    
+    
 }
 .score {
     display: grid;
@@ -74,13 +93,14 @@ body {
 }
 
 .score-heading {
-    background-color: rgba(222, 59, 37, 0.87); /* how to give linear-gradient property for multicolor background?*/
+    background-image: linear-gradient(rgba(0, 128, 128, 0.738), rgb(0, 229, 255), salmon);
+    /* background-color: rgba(222, 59, 37, 0.87); how to give linear-gradient property for multicolor background? */
     color: black;
     text-shadow: 1px 1px rgba(0, 0, 255, 0.434);
     border-bottom: 4px solid rgb(34, 34, 48);
 }
 .game-name {
-    background-color: rgba(93, 93, 230, 0.87); /* how to give linear-gradient property for multicolor background?*/
+    background-image: linear-gradient(rgba(128, 0, 32, 0.738), rgb(111, 0, 255), salmon);
     color: black;
     text-shadow: 2px 2px rgba(0, 0, 255, 0.434);
     border-bottom: 4px solid rgb(34, 34, 48);
@@ -92,7 +112,7 @@ body {
     margin-top: 30px;
 }
 
-.name {
+.team-score-label {
     color: rgb(232, 241, 46);
     text-shadow: 2px 2px rgba(0, 0, 255, 0.434);
 }
@@ -103,7 +123,7 @@ body {
     background-color: black;
 }
 
-#home-pt, #guest-pt {
+.home-pt, .guest-pt {
     font-family: "digital-7";
     color: rgb(186, 35, 60);
     font-size: 50px;
@@ -115,7 +135,7 @@ body {
     column-gap: 10px;
 }
 
-.btn {
+.add-pt-btn {
     width: 50px;
     background-color: rgb(16, 16, 39);
     border-radius: 10px;
@@ -125,7 +145,7 @@ body {
     cursor: pointer;
 }
 
-.reset-btn {
+#start-btn {
     justify-content: center;
     margin: 5% 20% 5% 20%;
     padding: 10px;
@@ -143,10 +163,3 @@ button:hover {
     opacity: 0.7;
 }
 
-#match-over {
-    color: white;
-    font-weight: bold;
-    font-size: 50px;
-    margin-left: 20px;
-    margin-top: 20px;
-}
