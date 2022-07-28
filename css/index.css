@@ -134,6 +134,16 @@ body {
     justify-content: center;
     column-gap: 10px;
 }
+/*
+.add-pt-hbtn1, .add-pt-hbtn2, .add-pt-hbtn3, .add-pt-gbtn1, .add-pt-gbtn2, .add-pt-gbtn3 {
+    width: 50px;
+    background-color: rgb(16, 16, 39);
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}*/
 
 .add-pt-btn {
     width: 50px;
@@ -144,7 +154,6 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
-
 #start-btn {
     justify-content: center;
     margin: 5% 20% 5% 20%;
