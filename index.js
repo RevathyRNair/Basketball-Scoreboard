@@ -48,6 +48,7 @@ const resetScores = () => {
   setTimeout(() => {
     showMessage(messageBox, " ");
     homeScoreValue.textContent = guestScoreValue.textContent = 0;
+    guestScore = homeScore = 0;
   }, 3000);
 };
 
