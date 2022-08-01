@@ -10,15 +10,12 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /* display: block; */
 }
 
 .display-msg {
     color: white;
     font-weight: bold;
     font-size: 50px;
-    margin-left: 20px;
-    margin-top: 20px;
 }
 
 .timer-container {
@@ -28,19 +25,10 @@ body {
     margin: auto;
     width: 20%;
     padding: 10px;
-    /* justify-content: center; */
-    
-    
-    /* font-size: large;
-    border: 2px solid;
-    margin-left: 40%;
-    margin-right: 40%; */
-    
 }
 
 .time-val {
     font-size: 50px;
-    /* text-shadow: none; */
     color: black;
 }
 
@@ -51,13 +39,6 @@ body {
     margin: 10px 30px;
     text-align: center;
     justify-content: center;
-}
-
-.home-score, .guest-score {
-    background-color: #da454549;
-    justify-content: center;
-    color: white;
-    margin-bottom: auto;
 }
 
 .score-summary {
@@ -76,25 +57,21 @@ body {
     color: black;
     border: 3px solid black;
     margin: 5px 0px;
-    /* text-align: center; */
-    
-    
 }
+
 .score {
-    display: grid;
-    grid-template-columns: 90% 10%;
-    border: 10px solid wheat;
+    border: 1px solid black;
+    margin: 30px 80px;
+    background-color: black;
 }
 
 .point-board {
     min-height: 350px;
-    text-align: center;
     background-color: #ffffff49;
 }
 
 .score-heading {
     background-image: linear-gradient(rgba(0, 128, 128, 0.738), rgb(0, 229, 255), salmon);
-    /* background-color: rgba(222, 59, 37, 0.87); how to give linear-gradient property for multicolor background? */
     color: black;
     text-shadow: 1px 1px rgba(0, 0, 255, 0.434);
     border-bottom: 4px solid rgb(34, 34, 48);
@@ -117,33 +94,17 @@ body {
     text-shadow: 2px 2px rgba(0, 0, 255, 0.434);
 }
 
-.score {
-    border: 1px solid black;
-    margin: 30px 80px;
-    background-color: black;
-}
-
 .home-pt, .guest-pt {
     font-family: "digital-7";
     color: rgb(186, 35, 60);
     font-size: 50px;
 }
 
-.pt-btn {
+.point-btn {
     display: flex;
     justify-content: center;
     column-gap: 10px;
 }
-/*
-.add-pt-hbtn1, .add-pt-hbtn2, .add-pt-hbtn3, .add-pt-gbtn1, .add-pt-gbtn2, .add-pt-gbtn3 {
-    width: 50px;
-    background-color: rgb(16, 16, 39);
-    border-radius: 10px;
-    color: white;
-    padding: 5px;
-    font-size: 20px;
-    cursor: pointer;
-}*/
 
 .add-pt-btn {
     width: 50px;
@@ -156,7 +117,7 @@ body {
 }
 #start-btn {
     justify-content: center;
-    margin: 5% 20% 5% 20%;
+    margin: 5% 20%;
     padding: 10px;
     border-radius: 10px;
     width: 100px;
@@ -167,8 +128,8 @@ body {
     cursor: pointer;
 }
 
-
 button:hover {
     opacity: 0.7;
 }
+
 

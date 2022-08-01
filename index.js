@@ -1,8 +1,3 @@
-let rounds = 1;
-let homeTotalScore = 0;
-let guestTotalScore = 0;
-let matchDuration = 12;
-
 const startButton = document.getElementById("start-btn");
 const minuteVal = document.querySelector(".minute-val");
 const secondVal = document.querySelector(".seconds-val");
@@ -16,7 +11,6 @@ const homePoint = document.querySelector(".home-pt");
 const guestPoint = document.querySelector(".guest-pt");
 
 const addPointButton = document.querySelectorAll(".add-pt-btn");
-console.log(addPointButton);
 
 const guestRound1Score = document.querySelector(".guest-round-1");
 const guestRound2Score = document.querySelector(".guest-round-2");
@@ -25,8 +19,12 @@ const guestRound4Score = document.querySelector(".guest-round-4");
 
 const message = document.querySelector(".display-msg");
 
-const renderMins = (minVal) => (minuteVal.textContent = String(minVal).padStart(2, 0));
+let rounds = 1;
+let homeTotalScore = 0;
+let guestTotalScore = 0;
+let matchDuration = 0.25;
 
+const renderMins = (minVal) => (minuteVal.textContent = String(minVal).padStart(2, 0));
 const renderSecs = (secValue) => (secondVal.textContent = String(secValue).padStart(2, 0));
 
 const addHomeRound1Score = (score) => (homeRound1Score.textContent = score);
@@ -40,11 +38,8 @@ const displayGuestScore = (score) => (guestPoint.textContent = score);
 const showMessage = (msgEl, msgVal) => (msgEl.textContent = msgVal);
 
 addPointButton.forEach((btn) => {
-    console.log("Entered forEach loop");
     btn.addEventListener("click", function (e) {
-        console.log("Entered click event");
         const buttonIsWithAttribute = e.target.getAttribute("data-addPointAttribute");
-        console.log(buttonIsWithAttribute);
     
         if (buttonIsWithAttribute === "home-add-1") {
             addHomeTotalScore(1);
@@ -80,9 +75,7 @@ addPointButton.forEach((btn) => {
  
 
 startButton.addEventListener("click", start);
-
 function start() {
-    console.log("Start button clicked");
     let mins, sec, timeup;
     let interval;
     let timer = matchDuration * 60;
@@ -113,4 +106,5 @@ const resetScores = () => {
       homePoint.textContent = guestPoint.textContent = 0;
     }, 5000);
 };
+
 
