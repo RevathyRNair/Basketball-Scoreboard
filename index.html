@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Basketball Scoreboard</title>
+  </head>
+  <body>
+    <main class="main-container">
+      <p class="display-msg"></p>
+
+      <div class="timer-container">
+        <h1>TIMER</h1>
+        <h2 class="time-val">
+          <span class="minute-val">00</span>:<span class="seconds-val">00</span>
+        </h2>
+      </div>
+      <div class="main">
+        <div class="home-score">
+          <h1 class="score-heading">Home Score</h1>
+          <div class="score-summary">
+            <div class="round-score">
+              <h2>Round 1 - <span class="home-round-1">0</span></h2>
+            </div>
+            <div class="round-score">
+              <h2>Round 2 - <span class="home-round-2">0</span></h2>
+            </div>
+            <div class="round-score">
+              <h2>Round 3 - <span class="home-round-3">0</span></h2>
+            </div>
+            <div class="round-score">
+              <h2>Round 4 - <span class="home-round-4">0</span></h2>
+            </div>
+            <div class="round-score">
+              <h2 id="totalScore">Total Score - <span class="total-home-score">0</span></h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="point-board">
+          <h1 class="game-name">Basketball Scoreboard</h1>
+          <div class="team-names">
+            <div>
+              <h1 class="team-score-label">HOME</h1>
+              <div class="score">
+                <h2><span class="home-pt">0</span></h2>
+              </div>
+              <div class="point-btn">
+                <button class="add-pt-btn" data-addPointAttribute="home-add-1">+1</button>
+                <button class="add-pt-btn" data-addPointAttribute="home-add-2">+2</button>
+                <button class="add-pt-btn" data-addPointAttribute="home-add-3">+3</button>
+              </div>
+            </div>
+                
+            <div>
+              <h1 class="team-score-label">GUEST</h1>
+              <div class="score">
+                <h2><span class="guest-pt">0</span></h2>
+              </div>
+              <div class="point-btn">
+                <button class="add-pt-btn" data-addPointAttribute="guest-add-1">+1</button>
+                <button class="add-pt-btn" data-addPointAttribute="guest-add-2">+2</button>
+                <button class="add-pt-btn" data-addPointAttribute="guest-add-3">+3</button>
+              </div>
+            </div>
+          </div> 
+
+          <button id="start-btn">START</button> 
+          <p class="final-msg"></p>
+        </div>
+
+        <div class="guest-score">
+          <h1 class="score-heading">Guest Score</h1>
+          <div class="score-summary">
+            <div class="round-score">
+              <h2>Round 1 - <span class="guest-round-1">0</span></h2>
+            </div>
+            <div class="round-score">
+              <h2>Round 2 - <span class="guest-round-2">0</span></h2>
+            </div>
+            <div class="round-score">
+              <h2>Round 3 - <span class="guest-round-3">0</span></h2>
+            </div>
+            <div class="round-score">
+              <h2>Round 4 - <span class="guest-round-4">0</span></h2>
+            </div>
+            <div class="round-score">
+              <h2 id="totalScore">Total Score - <span class="total-guest-score">0</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="index.js"></script>
+    </main>
+  </body>
+</html>
