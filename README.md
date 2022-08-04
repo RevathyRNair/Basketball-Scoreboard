@@ -6,4 +6,9 @@
 # 3. There are 2 teams - Home and Guest
 # 4. Buttons to add score 1, 2 and 3 for each teams
 # 5. Round-wise scoreboard for each team on either side
-# 6. When the counter reaches 0, there should be a message showing that "Round # Over!"
+# 6. Total score of each team on either side
+# 7. When the counter reaches 0 for each round, show message "Round # Over"
+# 8. After round 4, show message "Match Over", display total score of each team, display the winner team name.
+# 9. User should be able to add points only after Start button is clicked
+# 10. User should not be able to click start again once the timer starts for each round.
+
