@@ -157,6 +157,7 @@ const resetScores = () => {
   setTimeout(() => {
     showMessage(message, " ");
     homePoint.textContent = guestPoint.textContent = 0;
+    homeTotalScore = guestTotalScore = 0;
   }, 3000);
 };
 
