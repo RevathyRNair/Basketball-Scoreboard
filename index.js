@@ -1,4 +1,5 @@
 const startButton = document.getElementById("start-btn");
+const resetButton = document.getElementById("reset-btn");
 const minuteVal = document.querySelector(".minute-val");
 const secondVal = document.querySelector(".seconds-val");
 
@@ -11,7 +12,7 @@ const totalHomeScore = document.querySelector(".total-home-score");
 const homePoint = document.querySelector(".home-pt");
 const guestPoint = document.querySelector(".guest-pt");
 
-var addPointButton = document.querySelectorAll(".add-pt-btn");
+let addPointButton = document.querySelectorAll(".add-pt-btn");
 
 const guestRound1Score = document.querySelector(".guest-round-1");
 const guestRound2Score = document.querySelector(".guest-round-2");
@@ -25,9 +26,10 @@ const finalMsg = document.querySelector(".final-msg");
 let rounds = 0;
 let homeTotalScore = 0;
 let guestTotalScore = 0;
-let matchDuration = 0.15;
+let matchDuration = 0.05;
 let hFinalScore = 0;
 let gFinalScore = 0;
+let mins, sec, timeup, interval;
 
 disableStart(false);
 
@@ -41,87 +43,79 @@ const displayGuestScore = (score) => (guestPoint.textContent = score);
 
 const showMessage = (msgEl, msgVal) => (msgEl.textContent = msgVal);
 
+function showResetButton() {
+  startButton.style.display = "none";
+  resetButton.style.display = "block";
+}
 function eachRoundScoreDisplay (roundVal, hScore, gScore) {
   let rVal = roundVal;
-  if (rVal == 1){
+  if (rVal === 1){
     homeRound1Score.textContent = hScore;
     guestRound1Score.textContent = gScore;
   }
-  if (rVal == 2){
+  if (rVal === 2){
     homeRound2Score.textContent = hScore;
     guestRound2Score.textContent = gScore;
   }
-  if (rVal == 3){
+  if (rVal === 3){
     homeRound3Score.textContent = hScore;
     guestRound3Score.textContent = gScore;
   }
-  if (rVal == 4){
+  if (rVal === 4){
     homeRound4Score.textContent = hScore;
     guestRound4Score.textContent = gScore;
     calculateFinalScore();
-  }  
+  } 
 }
 
 function calculateFinalScore() {
   hFinalScore = parseInt(homeRound1Score.textContent) + parseInt(homeRound2Score.textContent) + parseInt(homeRound3Score.textContent) + parseInt(homeRound4Score.textContent);
   gFinalScore = parseInt(guestRound1Score.textContent) + parseInt(guestRound2Score.textContent) + parseInt(guestRound3Score.textContent) + parseInt(guestRound4Score.textContent);
+  
   totalHomeScore.textContent = hFinalScore;
   totalGuestScore.textContent = gFinalScore;
-  if (hFinalScore > gFinalScore) {
-    finalMsg.textContent = "The Winner is Team Home 🥳";
-  }
-  else if (hFinalScore < gFinalScore) {
-    finalMsg.textContent = "The Winner is Team Guest 🥳";
-  }
-  else {
-    finalMsg.textContent = "The Match is a Draw!";
-  }
+
+  const finalMessage = hFinalScore > gFinalScore ? "The Winner is Team Home 🥳"
+    : hFinalScore < gFinalScore ? "The Winner is Team Guest 🥳"
+    : "The Match is a Draw!"
+  
+  finalMsg.textContent = finalMessage;
 }
 
 addPointButton.forEach((btn) => {
   btn.addEventListener("click", function (e) {
     const buttonIsWithAttribute = e.target.getAttribute("data-addPointAttribute");
-  
-    if (buttonIsWithAttribute === "home-add-1") {
-      addHomeTotalScore(1);
-      displayHomeScore(homeTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "home-add-2") {
-      addHomeTotalScore(2);
-      displayHomeScore(homeTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "home-add-3") {
-      addHomeTotalScore(3);
-      displayHomeScore(homeTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "guest-add-1") {
-      addGuestTotalScore(1);
-      displayGuestScore(guestTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "guest-add-2") {
-      addGuestTotalScore(2);
-      displayGuestScore(guestTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "guest-add-3") {
-      addGuestTotalScore(3);
-      displayGuestScore(guestTotalScore);
-    }   
+
+    const hNum = buttonIsWithAttribute === "home-add-1" ? 1
+      : buttonIsWithAttribute === "home-add-2" ? 2
+      : buttonIsWithAttribute === "home-add-3" ? 3 : 0
+    
+    addHomeTotalScore(hNum);
+    displayHomeScore(homeTotalScore);
+
+    const gNum = buttonIsWithAttribute === "guest-add-1" ? 1
+      : buttonIsWithAttribute === "guest-add-2" ? 2
+      : buttonIsWithAttribute === "guest-add-3" ? 3 : 0
+ 
+    addGuestTotalScore(gNum);
+    displayGuestScore(guestTotalScore);  
   });
 });
 
+startButton.addEventListener("click", function() {
 
-startButton.addEventListener("click", start);
+  if (rounds < 4) {
+    start();
+  }
+  if (rounds === 4) {
+    showResetButton();
+  }
+});
+
 function start() {
   rounds++;
   disableStart(true);
 
-  let mins, sec, timeup;
-  let interval;
   let timer = matchDuration * 60;
   function startTimer() {
     mins = Math.floor(timer / 60);
@@ -136,18 +130,12 @@ function start() {
       let gPoint = guestPoint.textContent;
       clearInterval(interval);
       eachRoundScoreDisplay(rounds, hPoint, gPoint);
-         
-      if (rounds < 4){
-        showMessage(message, "Round " +rounds+ " Over");
-      }
-      else {
-        showMessage(message, "Match Over");
-      }
+
+      const roundMsg = rounds < 4 ? showMessage(message, "Round " +rounds+ " Over") : showMessage(message, "Match Over");
           
       resetScores();
       disableStart(false);
     }
-  
     timer --;
   }
   interval = setInterval(startTimer, 1000);
@@ -163,19 +151,18 @@ const resetScores = () => {
 
 function disableStart(status) {
   let startStatus = status;
-  if(startStatus == true) {
-    startButton.disabled = true;
-  }
-  else {
-    startButton.disabled = false;
-  }
 
+  const stBtn = startStatus === true ? true : false;
+  startButton.disabled = stBtn;
+  
   for (let i = 0; i < addPointButton.length; i++) {
-    if(startStatus == true) {
-      addPointButton[i].disabled = false;
-    }
-    else {
-      addPointButton[i].disabled = true;
-    }  
+    const ptBtnStatus = startStatus === true ? false : true;
+    addPointButton[i].disabled = ptBtnStatus; 
   }
 }
+
+resetButton.addEventListener("click", function() {
+  if (mins <= 0 && sec <= 0) {
+    window.location.reload();
+  }
+})

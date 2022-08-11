@@ -116,9 +116,9 @@
   cursor: pointer;
 }
 
-#start-btn {
+#start-btn, #reset-btn {
   justify-content: center;
-  margin: 10% 0%; 
+  margin: 5% auto; 
   padding: 10px;
   border-radius: 10px;
   width: 130px;
@@ -127,6 +127,11 @@
   font-weight: bold;
   color: rgb(60, 7, 45);
   cursor: pointer;
+}
+
+#reset-btn {
+  display: none;
+  background-color: orange;
 }
 
 button:hover {

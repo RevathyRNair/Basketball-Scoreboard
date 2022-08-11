@@ -1,14 +1,49 @@
 # Basketball-Scoreboard
-# This project is to develop a Basketball Scoreboard.
-# Features are:
-# 1. A timer at the top starting at 12 minutes and counting down on click of start button
-# 2. A Score board at the center to show the current score of teams
-# 3. There are 2 teams - Home and Guest
-# 4. Buttons to add score 1, 2 and 3 for each teams
-# 5. Round-wise scoreboard for each team on either side
-# 6. Total score of each team on either side
-# 7. When the counter reaches 0 for each round, show message "Round # Over"
-# 8. After round 4, show message "Match Over", display total score of each team, display the winner team name.
-# 9. User should be able to add points only after Start button is clicked
-# 10. User should not be able to click start again once the timer starts for each round.
 
+# This project is to develop a Basketball Scoreboard.
+
+# Features are:
+
+1. Timer for each round
+2. Main scoreboard to show current score details
+3. Summary scoreboards for each team to show scores for each round and final score
+4. Start button - to start the round
+5. Reset button = to reset the game window
+6. Point buttons 1, 2, 3 to add respective points for each team
+7. Diaplay appropriate messages
+
+Details:
+Timer :
+
+- starts at 12 and counting down till 0 on click of start button
+
+Main scoreboard :
+
+- placed on centre of the page.
+- Two teams, Home and Guest
+- Placeholder to show the current score of each team
+- Buttons to add points 1, 2 and 3 for each teams
+- Start/Reset button
+- Placeholder to display final match message (Winner Name/ Match Draw)
+
+Summary scoreboard :
+
+- Roundwise scores of each team displayed on either side of main scoreboard (Home - left, Guest - right)
+- There will be 4 rounds
+- After 4th round total scores will be displayed
+
+Start button :
+
+- Timer should start on click of start button.
+- Point buttons to be enabled only after click of start
+- Once clicked, should not allow 2nd attempt of start button click
+
+Reset button :
+
+- To be displayed after round 4
+- On click of reset the game window is reset
+
+Message :
+
+- When the counter reaches 0 for each round, show message "Round # Over"
+- After round 4, show message "Match Over", display the winner team name/draw
