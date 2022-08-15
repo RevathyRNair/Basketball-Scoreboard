@@ -3,7 +3,7 @@
   src: url("https://www.1001fonts.com/digital-7-font.html") format ("TrueType (ttf)");
 }
 
-.main-container {
+.main-container, #img-id {
   width: 100vw;
   height: 100vh;
   background-image: url(../images/basketball.jpeg);
@@ -116,7 +116,7 @@
   cursor: pointer;
 }
 
-#start-btn, #reset-btn {
+.mainBtn {
   justify-content: center;
   margin: 5% auto; 
   padding: 10px;
@@ -146,5 +146,5 @@ button:hover {
   text-align: center;
   font-size: 50px;
   font-weight: bold;
-  color: rgb(38, 38, 119);
+  color: rgb(15, 15, 41);
 }

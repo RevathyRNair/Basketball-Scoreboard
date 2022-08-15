@@ -48,20 +48,20 @@ function showResetButton() {
   resetButton.style.display = "block";
 }
 function eachRoundScoreDisplay (roundVal, hScore, gScore) {
-  let rVal = roundVal;
-  if (rVal === 1){
+
+  if (roundVal === 1){
     homeRound1Score.textContent = hScore;
     guestRound1Score.textContent = gScore;
   }
-  if (rVal === 2){
+  if (roundVal === 2){
     homeRound2Score.textContent = hScore;
     guestRound2Score.textContent = gScore;
   }
-  if (rVal === 3){
+  if (roundVal === 3){
     homeRound3Score.textContent = hScore;
     guestRound3Score.textContent = gScore;
   }
-  if (rVal === 4){
+  if (roundVal === 4){
     homeRound4Score.textContent = hScore;
     guestRound4Score.textContent = gScore;
     calculateFinalScore();
@@ -75,11 +75,19 @@ function calculateFinalScore() {
   totalHomeScore.textContent = hFinalScore;
   totalGuestScore.textContent = gFinalScore;
 
-  const finalMessage = hFinalScore > gFinalScore ? "The Winner is Team Home 🥳"
-    : hFinalScore < gFinalScore ? "The Winner is Team Guest 🥳"
-    : "The Match is a Draw!"
+  let finalMessage = "";
+  if (hFinalScore > gFinalScore) {
+    finalMessage = "The Winner is Team Home 🥳"
+  }
+  else if (hFinalScore < gFinalScore) {
+    finalMessage = "The Winner is Team Guest 🥳"
+  }
+  else if (hFinalScore === gFinalScore) {
+    finalMessage = "The Match is a Draw!";
+  }
   
   finalMsg.textContent = finalMessage;
+  changeBgImage();
 }
 
 addPointButton.forEach((btn) => {
@@ -131,8 +139,9 @@ function start() {
       clearInterval(interval);
       eachRoundScoreDisplay(rounds, hPoint, gPoint);
 
-      const roundMsg = rounds < 4 ? showMessage(message, "Round " +rounds+ " Over") : showMessage(message, "Match Over");
-          
+      let rMsg = "";
+      const roundMsg = rounds < 4 ? rMsg = "Round " +rounds+ " Over" : rMsg = "Match Over"
+      showMessage(message, rMsg);
       resetScores();
       disableStart(false);
     }
@@ -150,14 +159,10 @@ const resetScores = () => {
 };
 
 function disableStart(status) {
-  let startStatus = status;
-
-  const stBtn = startStatus === true ? true : false;
-  startButton.disabled = stBtn;
+  startButton.disabled = status;
   
   for (let i = 0; i < addPointButton.length; i++) {
-    const ptBtnStatus = startStatus === true ? false : true;
-    addPointButton[i].disabled = ptBtnStatus; 
+    addPointButton[i].disabled = !status; 
   }
 }
 
@@ -166,3 +171,14 @@ resetButton.addEventListener("click", function() {
     window.location.reload();
   }
 })
+
+function changeBgImage() {
+  let imgPath = document.getElementById("img-id").style.backgroundImage;
+
+  if(imgPath == "url(../images/basketball.jpeg)" || imgPath == "") {
+    document.getElementById("img-id").style.backgroundImage = "url(../images/fireworks.gif)";
+  }
+  else {
+    document.getElementById("img-id").style.backgroundImage = "url(../images/basketball.jpeg)";
+  }
+}
