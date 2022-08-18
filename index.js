@@ -127,7 +127,12 @@ function start() {
       eachRoundScoreDisplay(rounds);
 
       let rMsg = "";
-      const roundMsg = rounds < 4 ? rMsg = "Round " +rounds+ " Over" : rMsg = "Match Over"
+      if (rounds < 4) {
+        rMsg = "Round " +rounds+ " Over";
+      }
+      else {
+        rMsg = "Match Over";
+      }
       showMessage(message, rMsg);
       resetScores();
       disableStart(false);
