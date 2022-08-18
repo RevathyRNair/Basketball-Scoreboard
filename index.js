@@ -1,22 +1,16 @@
 const startButton = document.getElementById("start-btn");
+const resetButton = document.getElementById("reset-btn");
 const minuteVal = document.querySelector(".minute-val");
 const secondVal = document.querySelector(".seconds-val");
 
-const homeRound1Score = document.querySelector(".home-round-1");
-const homeRound2Score = document.querySelector(".home-round-2");
-const homeRound3Score = document.querySelector(".home-round-3");
-const homeRound4Score = document.querySelector(".home-round-4");
-const totalHomeScore = document.querySelector(".total-home-score");
+const homeArr = document.querySelectorAll('.home-round');
+const guestArr = document.querySelectorAll('.guest-round');
 
 const homePoint = document.querySelector(".home-pt");
 const guestPoint = document.querySelector(".guest-pt");
 
-var addPointButton = document.querySelectorAll(".add-pt-btn");
-
-const guestRound1Score = document.querySelector(".guest-round-1");
-const guestRound2Score = document.querySelector(".guest-round-2");
-const guestRound3Score = document.querySelector(".guest-round-3");
-const guestRound4Score = document.querySelector(".guest-round-4");
+const addPointButton = document.querySelectorAll(".add-pt-btn");
+const totalHomeScore = document.querySelector(".total-home-score");
 const totalGuestScore = document.querySelector(".total-guest-score");
 
 const message = document.querySelector(".display-msg");
@@ -25,103 +19,95 @@ const finalMsg = document.querySelector(".final-msg");
 let rounds = 0;
 let homeTotalScore = 0;
 let guestTotalScore = 0;
-let matchDuration = 0.15;
+let matchDuration = 0.05;
 let hFinalScore = 0;
 let gFinalScore = 0;
+let mins, sec, timeup, interval;
+let homeScoreArray = [];
+let guestScoreArray = [];
 
 disableStart(false);
 
 const renderMins = (minVal) => (minuteVal.textContent = String(minVal).padStart(2, 0));
 const renderSecs = (secValue) => (secondVal.textContent = String(secValue).padStart(2, 0));
-
-const addHomeTotalScore = (val) => (homeTotalScore += val);
-const displayHomeScore = (score) => (homePoint.textContent = score);
-const addGuestTotalScore = (val) => (guestTotalScore += val);
-const displayGuestScore = (score) => (guestPoint.textContent = score);
-
 const showMessage = (msgEl, msgVal) => (msgEl.textContent = msgVal);
 
-function eachRoundScoreDisplay (roundVal, hScore, gScore) {
-  let rVal = roundVal;
-  if (rVal == 1){
-    homeRound1Score.textContent = hScore;
-    guestRound1Score.textContent = gScore;
+function addTotalScore(team, points) {
+  if(team === "home") {
+    homeTotalScore += points;
+    homePoint.textContent = homeTotalScore;
   }
-  if (rVal == 2){
-    homeRound2Score.textContent = hScore;
-    guestRound2Score.textContent = gScore;
+  else if(team === "guest") {
+    guestTotalScore += points;
+    guestPoint.textContent = guestTotalScore;
   }
-  if (rVal == 3){
-    homeRound3Score.textContent = hScore;
-    guestRound3Score.textContent = gScore;
-  }
-  if (rVal == 4){
-    homeRound4Score.textContent = hScore;
-    guestRound4Score.textContent = gScore;
+}
+
+function showResetButton() {
+  startButton.style.display = "none";
+  resetButton.style.display = "block";
+}
+
+function eachRoundScoreDisplay (roundVal) {
+  let i = roundVal-1;
+
+  homeArr[i].textContent = homeScoreArray[i];
+  guestArr[i].textContent = guestScoreArray[i];
+
+  if(i === homeArr.length-1) {
     calculateFinalScore();
-  }  
+  }
 }
 
 function calculateFinalScore() {
-  hFinalScore = parseInt(homeRound1Score.textContent) + parseInt(homeRound2Score.textContent) + parseInt(homeRound3Score.textContent) + parseInt(homeRound4Score.textContent);
-  gFinalScore = parseInt(guestRound1Score.textContent) + parseInt(guestRound2Score.textContent) + parseInt(guestRound3Score.textContent) + parseInt(guestRound4Score.textContent);
+  
+  for (let j = 0; j < homeArr.length; j++) {
+    hFinalScore += parseInt(homeScoreArray[j]);
+    gFinalScore += parseInt(guestScoreArray[j]);
+  }
+  
   totalHomeScore.textContent = hFinalScore;
   totalGuestScore.textContent = gFinalScore;
+
+  let finalMessage = "";
   if (hFinalScore > gFinalScore) {
-    finalMsg.textContent = "The Winner is Team Home 🥳";
+    finalMessage = "The Winner is Team Home 🥳"
   }
   else if (hFinalScore < gFinalScore) {
-    finalMsg.textContent = "The Winner is Team Guest 🥳";
+    finalMessage = "The Winner is Team Guest 🥳"
   }
-  else {
-    finalMsg.textContent = "The Match is a Draw!";
+  else if (hFinalScore === gFinalScore) {
+    finalMessage = "The Match is a Draw!";
   }
+  
+  finalMsg.textContent = finalMessage;
+  changeBgImage();
 }
 
 addPointButton.forEach((btn) => {
   btn.addEventListener("click", function (e) {
     const buttonIsWithAttribute = e.target.getAttribute("data-addPointAttribute");
-  
-    if (buttonIsWithAttribute === "home-add-1") {
-      addHomeTotalScore(1);
-      displayHomeScore(homeTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "home-add-2") {
-      addHomeTotalScore(2);
-      displayHomeScore(homeTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "home-add-3") {
-      addHomeTotalScore(3);
-      displayHomeScore(homeTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "guest-add-1") {
-      addGuestTotalScore(1);
-      displayGuestScore(guestTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "guest-add-2") {
-      addGuestTotalScore(2);
-      displayGuestScore(guestTotalScore);
-    }
-  
-    if (buttonIsWithAttribute === "guest-add-3") {
-      addGuestTotalScore(3);
-      displayGuestScore(guestTotalScore);
-    }   
+    let pointNum = buttonIsWithAttribute.split('-');
+    let teamName = pointNum[0];
+    let addPoint = parseInt(pointNum[2]);
+    addTotalScore(teamName, addPoint);
   });
 });
 
+startButton.addEventListener("click", function() {
 
-startButton.addEventListener("click", start);
+  if (rounds < 4) {
+    start();
+  }
+  if (rounds === 4) {
+    showResetButton();
+  }
+});
+
 function start() {
   rounds++;
   disableStart(true);
 
-  let mins, sec, timeup;
-  let interval;
   let timer = matchDuration * 60;
   function startTimer() {
     mins = Math.floor(timer / 60);
@@ -134,20 +120,23 @@ function start() {
     if(timeup) {
       let hPoint = homePoint.textContent;
       let gPoint = guestPoint.textContent;
+
       clearInterval(interval);
-      eachRoundScoreDisplay(rounds, hPoint, gPoint);
-         
-      if (rounds < 4){
-        showMessage(message, "Round " +rounds+ " Over");
+      homeScoreArray.push(hPoint);
+      guestScoreArray.push(gPoint);
+      eachRoundScoreDisplay(rounds);
+
+      let rMsg = "";
+      if (rounds < 4) {
+        rMsg = "Round " +rounds+ " Over";
       }
       else {
-        showMessage(message, "Match Over");
+        rMsg = "Match Over";
       }
-          
+      showMessage(message, rMsg);
       resetScores();
       disableStart(false);
     }
-  
     timer --;
   }
   interval = setInterval(startTimer, 1000);
@@ -162,20 +151,26 @@ const resetScores = () => {
 };
 
 function disableStart(status) {
-  let startStatus = status;
-  if(startStatus == true) {
-    startButton.disabled = true;
+  startButton.disabled = status;
+  
+  for (let i = 0; i < addPointButton.length; i++) {
+    addPointButton[i].disabled = !status; 
+  }
+}
+
+resetButton.addEventListener("click", function() {
+  if (mins <= 0 && sec <= 0) {
+    window.location.reload();
+  }
+})
+
+function changeBgImage() {
+  let imgPath = document.getElementById("img-id").style.backgroundImage;
+
+  if(imgPath == "url(../images/basketball.jpeg)" || imgPath == "") {
+    document.getElementById("img-id").style.backgroundImage = "url(../images/fireworks.gif)";
   }
   else {
-    startButton.disabled = false;
-  }
-
-  for (let i = 0; i < addPointButton.length; i++) {
-    if(startStatus == true) {
-      addPointButton[i].disabled = false;
-    }
-    else {
-      addPointButton[i].disabled = true;
-    }  
+    document.getElementById("img-id").style.backgroundImage = "url(../images/basketball.jpeg)";
   }
 }

@@ -6,7 +6,7 @@
     <title>Basketball Scoreboard</title>
   </head>
   <body>
-    <main class="main-container">
+    <main class="main-container" id="img-id">
       <p class="display-msg"></p>
 
       <div class="timer-container">
@@ -20,16 +20,16 @@
           <h1 class="score-heading">Home Score</h1>
           <div class="score-summary">
             <div class="round-score">
-              <h2>Round 1 - <span class="home-round-1">0</span></h2>
+              <h2>Round 1 - <span class="home-round">0</span></h2>
             </div>
             <div class="round-score">
-              <h2>Round 2 - <span class="home-round-2">0</span></h2>
+              <h2>Round 2 - <span class="home-round">0</span></h2>
             </div>
             <div class="round-score">
-              <h2>Round 3 - <span class="home-round-3">0</span></h2>
+              <h2>Round 3 - <span class="home-round">0</span></h2>
             </div>
             <div class="round-score">
-              <h2>Round 4 - <span class="home-round-4">0</span></h2>
+              <h2>Round 4 - <span class="home-round">0</span></h2>
             </div>
             <div class="round-score">
               <h2 id="totalScore">Total Score - <span class="total-home-score">0</span></h2>
@@ -65,7 +65,8 @@
             </div>
           </div> 
 
-          <button id="start-btn">START</button> 
+          <button id="start-btn" class="mainBtn">START</button> 
+          <button id="reset-btn" class="mainBtn">RESET</button> 
           <p class="final-msg"></p>
         </div>
 
@@ -73,16 +74,16 @@
           <h1 class="score-heading">Guest Score</h1>
           <div class="score-summary">
             <div class="round-score">
-              <h2>Round 1 - <span class="guest-round-1">0</span></h2>
+              <h2>Round 1 - <span class="guest-round">0</span></h2>
             </div>
             <div class="round-score">
-              <h2>Round 2 - <span class="guest-round-2">0</span></h2>
+              <h2>Round 2 - <span class="guest-round">0</span></h2>
             </div>
             <div class="round-score">
-              <h2>Round 3 - <span class="guest-round-3">0</span></h2>
+              <h2>Round 3 - <span class="guest-round">0</span></h2>
             </div>
             <div class="round-score">
-              <h2>Round 4 - <span class="guest-round-4">0</span></h2>
+              <h2>Round 4 - <span class="guest-round">0</span></h2>
             </div>
             <div class="round-score">
               <h2 id="totalScore">Total Score - <span class="total-guest-score">0</span></h2>
